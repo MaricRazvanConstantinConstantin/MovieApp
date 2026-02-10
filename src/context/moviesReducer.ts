@@ -1,4 +1,8 @@
-import type {MoviesState, MoviesContextAction} from './moviesTypes';
+import {
+  type MoviesState,
+  type MoviesContextAction,
+  initialState,
+} from './moviesTypes';
 
 export function moviesReducer(
   state: MoviesState,
@@ -25,6 +29,33 @@ export function moviesReducer(
       return {
         ...state,
         watchlist: state.watchlist.filter((m) => m.id !== action.payload.id),
+      };
+
+    case 'SET_GENRE_FILTERS':
+      return {
+        ...state,
+        filters: {...state.filters, genres: [...action.payload.genres]},
+      };
+
+    case 'SET_SORT':
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          sort: {...action.payload.sortSpecifications},
+        },
+      };
+
+    case 'SET_ONLY_IN_WATCHLIST':
+      return {
+        ...state,
+        filters: {...state.filters, onlyInWatchlist: action.payload.value},
+      };
+
+    case 'CLEAR_FILTERS':
+      return {
+        ...state,
+        filters: {...initialState.filters},
       };
 
     default:

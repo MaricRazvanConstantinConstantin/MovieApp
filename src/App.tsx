@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {useMoviesContext} from './context';
-import {MoviesList} from './components/MoviesList';
-import {Watchlist} from './components/Watchlist';
+import MoviesList from './components/MoviesList';
+import FilterBar from './components/FilterBar';
 
 export default function App() {
   const {loadMoviesFromJSON, loading, error} = useMoviesContext();
@@ -15,10 +15,8 @@ export default function App() {
 
   return (
     <div style={{padding: 16}}>
-      <h1>Movies</h1>
+      <FilterBar />
       <MoviesList />
-      <h2>Watchlist</h2>
-      <Watchlist />
     </div>
   );
 }

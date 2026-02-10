@@ -1,6 +1,6 @@
 import {useMoviesContext, type Movie} from '../context';
 
-export function MoviesCard({movie}: {movie: Movie}) {
+export default function MoviesCard({movie}: {movie: Movie}) {
   const {watchlist, addToWatchList, removeFromWatchlist} = useMoviesContext();
   const inWatchlist = watchlist.some((w) => w.id === movie.id);
 

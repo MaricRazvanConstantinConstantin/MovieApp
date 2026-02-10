@@ -1,17 +1,15 @@
 import {useMoviesContext} from '../context';
-import {MoviesCard} from './MoviesCard';
+import MoviesCard from './MoviesCard';
 
-export function MoviesList() {
-  const {movies} = useMoviesContext();
-
-  if (!movies.length) return <p>No movies loaded yet.</p>;
+export default function MoviesList() {
+  const {filteredMovies} = useMoviesContext();
 
   return (
     <ul className='movies-list'>
-      {movies.map((movie) => {
+      {filteredMovies.map((m) => {
         return (
-          <li key={movie.id}>
-            <MoviesCard movie={movie} />
+          <li key={m.id}>
+            <MoviesCard movie={m} />
           </li>
         );
       })}
