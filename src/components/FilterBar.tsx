@@ -13,9 +13,13 @@ export default function FilterBar() {
           value={filters.genres}
           className='filter-select'
           onChange={(e) => {
-            const selected = Array.from(e.target.selectedOptions).map(
+            const raw = Array.from(e.target.selectedOptions).map(
               (o) => o.value as Genre,
             );
+            const selected = raw.includes('all' as Genre)
+              ? []
+              : raw.filter((g) => g !== ('all' as Genre));
+
             setGenreFilter(selected);
           }}
         >

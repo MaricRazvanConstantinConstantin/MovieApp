@@ -14,9 +14,9 @@ export default function App() {
   if (error) return <div style={{color: 'crimson'}}>Error: {error}</div>;
 
   return (
-    <div style={{padding: 16}}>
+    <>
       <FilterBar />
       <MoviesList />
-    </div>
+    </>
   );
 }
