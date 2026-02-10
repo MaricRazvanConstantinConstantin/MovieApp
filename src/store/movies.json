@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "title": "Dark Storm",
+    "image": "1.jpg",
+    "genre": "drama",
+    "rating": "8.3",
+    "description": "A brooding tale of ambition and betrayal as a city braces for an inevitable downfall.",
+    "actors": ["Lena Harwood", "Caleb Mercer", "Jonas Hale"]
+  },
+  {
+    "id": 2,
+    "title": "Whisper of Fate",
+    "image": "2.jpg",
+    "genre": "fantasy",
+    "rating": "7.7",
+    "description": "A young mage discovers a hidden prophecy that could reshape the future of her realm.",
+    "actors": ["Elara Quinn", "Marek Thorne", "Sera Dawn"]
+  },
+  {
+    "id": 3,
+    "title": "Beyond the Edge",
+    "image": "3.jpg",
+    "genre": "horror",
+    "rating": "6.3",
+    "description": "An expedition into a forgotten ruin unleashes horrors from another dimension.",
+    "actors": ["Iris Vale", "Damien Cross", "Tara Wynn"]
+  },
+  {
+    "id": 4,
+    "title": "Lost in Shadows",
+    "image": "4.jpg",
+    "genre": "action",
+    "rating": "9.3",
+    "description": "A rogue operative races against time to stop a shadowy organization.",
+    "actors": ["Ryder Blaze", "Mila Hart", "Kai Draven"]
+  },
+  {
+    "id": 5,
+    "title": "Echoes of Power",
+    "image": "5.jpg",
+    "genre": "fantasy",
+    "rating": "6.9",
+    "description": "Ancient magic awakens as two kingdoms clash for control of a sacred relic.",
+    "actors": ["Elyra Stone", "Thane Merrick", "Owen Reed"]
+  },
+  {
+    "id": 6,
+    "title": "Grim Reckoning",
+    "image": "6.jpg",
+    "genre": "drama",
+    "rating": "8.4",
+    "description": "A detective confronts his own past while pursuing a relentless criminal mastermind.",
+    "actors": ["Viktor Hale", "Nadia Trent", "Leon Frost"]
+  },
+  {
+    "id": 7,
+    "title": "Fury's Flight",
+    "image": "7.jpg",
+    "genre": "action",
+    "rating": "9.8",
+    "description": "A fearless pilot fights to expose a global conspiracy threatening millions.",
+    "actors": ["Ava Kestrel", "Dante Rourke", "Silas Vorn"]
+  },
+  {
+    "id": 8,
+    "title": "Path of the Forgotten",
+    "image": "8.jpg",
+    "genre": "action",
+    "rating": "7.2",
+    "description": "A former soldier must reclaim his identity while navigating a dangerous underworld.",
+    "actors": ["Marcus Vale", "Liora Finch", "Derek Shaw"]
+  },
+  {
+    "id": 9,
+    "title": "Nightmare's Threshold",
+    "image": "9.jpg",
+    "genre": "horror",
+    "rating": "1.7",
+    "description": "A cursed mirror traps its victims within their darkest fears.",
+    "actors": ["Harper Gage", "Evan Cole", "Rhea Knox"]
+  },
+  {
+    "id": 10,
+    "title": "Eternal Hunt",
+    "image": "10.jpg",
+    "genre": "fantasy",
+    "rating": "7.5",
+    "description": "A warrior is bound to an immortal beast in a quest to break an ancient curse.",
+    "actors": ["Kael Rowan", "Seren Vale", "Orin Dray"]
+  },
+  {
+    "id": 11,
+    "title": "Legacy of the Void",
+    "image": "11.jpg",
+    "genre": "action",
+    "rating": "8.5",
+    "description": "A secret agent uncovers a weapon capable of erasing entire civilizations.",
+    "actors": ["Zane Cutter", "Elena Ward", "Jax Orion"]
+  },
+  {
+    "id": 12,
+    "title": "Shadow's Crescent",
+    "image": "12.jpg",
+    "genre": "horror",
+    "rating": "7.5",
+    "description": "A lunar ritual awakens a supernatural threat lurking in the woods.",
+    "actors": ["Mara Siv", "Theo Rylan", "Isis Crowe"]
+  },
+  {
+    "id": 13,
+    "title": "Crimson Dawn",
+    "image": "13.jpg",
+    "genre": "fantasy",
+    "rating": "8.4",
+    "description": "A rising rebellion challenges a tyrant with forbidden blood magic.",
+    "actors": ["Riven Hale", "Lyra Crest", "Damon Stroud"]
+  },
+  {
+    "id": 14,
+    "title": "Silent Kingdom",
+    "image": "14.jpg",
+    "genre": "fantasy",
+    "rating": "6.5",
+    "description": "A prince without a voice must unite fractured realms before war erupts.",
+    "actors": ["Corin Vale", "Isolde Wynn", "Taren Holt"]
+  },
+  {
+    "id": 15,
+    "title": "Mystic Rite",
+    "image": "15.jpg",
+    "genre": "fantasy",
+    "rating": "9.8",
+    "description": "An apprentice sorcerer undergoes a deadly trial to safeguard ancient magic.",
+    "actors": ["Mira Thal", "Gareth Sol", "Anya Crest"]
+  },
+  {
+    "id": 16,
+    "title": "Reign of the Lost",
+    "image": "16.jpg",
+    "genre": "horror",
+    "rating": "9.1",
+    "description": "A town swallowed by fog hides a monstrous ruler beyond comprehension.",
+    "actors": ["Silvia Thorn", "Jared Knox", "Liam Voss"]
+  },
+  {
+    "id": 17,
+    "title": "Timeless Myth",
+    "image": "17.jpg",
+    "genre": "drama",
+    "rating": "4.0",
+    "description": "A historian’s discovery of an ancient artifact spirals his life into chaos.",
+    "actors": ["Fiona Hale", "Owen Crest", "Julian Marr"]
+  },
+  {
+    "id": 18,
+    "title": "Oath of the Fallen",
+    "image": "18.jpg",
+    "genre": "fantasy",
+    "rating": "6.3",
+    "description": "A warrior breaks his sacred oath to save a child marked by destiny.",
+    "actors": ["Eris Vale", "Kaden Stroud", "Lysa Thorn"]
+  },
+  {
+    "id": 19,
+    "title": "Veil of Night",
+    "image": "19.jpg",
+    "genre": "drama",
+    "rating": "9.5",
+    "description": "A grieving musician uncovers hidden truths about the night her life changed forever.",
+    "actors": ["Aria Wynn", "Sebastian Crow", "Milo Ashen"]
+  },
+  {
+    "id": 20,
+    "title": "Guardians of Twilight",
+    "image": "20.jpg",
+    "genre": "horror",
+    "rating": "7.4",
+    "description": "When dusk falls, ancient guardians rise to fight an unspeakable evil.",
+    "actors": ["Cassia Frost", "Roman Vale", "Dara Quinn"]
+  }
+]
