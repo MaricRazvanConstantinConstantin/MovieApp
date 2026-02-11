@@ -48,9 +48,9 @@ export default function MoviesList() {
   return (
     <ul className='movies-list'>
       {filteredMovies.map((m) => (
-          <li key={m.id}>
-            <MoviesCard movie={m} />
-          </li>
+        <li key={m.id}>
+          <MoviesCard movie={m} />
+        </li>
       ))}
     </ul>
   );

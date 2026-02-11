@@ -1,93 +1,222 @@
 @import 'tailwindcss';
+@theme {
+  /* ink_black */
+  --color-ink-black: #0d1b2a; /* enables bg-ink-black, text-ink-black, etc. */
+  --color-ink-black-100: #030609;
+  --color-ink-black-200: #050b11;
+  --color-ink-black-300: #08111a;
+  --color-ink-black-400: #0b1622;
+  --color-ink-black-500: #0d1b2a; /* usually same as DEFAULT */
+  --color-ink-black-600: #234870;
+  --color-ink-black-700: #3875b6;
+  --color-ink-black-800: #74a3d4;
+  --color-ink-black-900: #bad1ea;
 
+  /* prussian_blue */
+  --color-prussian-blue: #1b263b;
+  --color-prussian-blue-100: #05080c;
+  --color-prussian-blue-200: #0b0f18;
+  --color-prussian-blue-300: #101724;
+  --color-prussian-blue-400: #161f30;
+  --color-prussian-blue-500: #1b263b;
+  --color-prussian-blue-600: #364c75;
+  --color-prussian-blue-700: #5172af;
+  --color-prussian-blue-800: #8ba1ca;
+  --color-prussian-blue-900: #c5d0e4;
+
+  /* dusk_blue */
+  --color-dusk-blue: #415a77;
+  --color-dusk-blue-100: #0d1218;
+  --color-dusk-blue-200: #1a242f;
+  --color-dusk-blue-300: #273647;
+  --color-dusk-blue-400: #34485f;
+  --color-dusk-blue-500: #415a77;
+  --color-dusk-blue-600: #587aa1;
+  --color-dusk-blue-700: #819bb9;
+  --color-dusk-blue-800: #abbcd1;
+  --color-dusk-blue-900: #d5dee8;
+
+  /* dusty_denim */
+  --color-dusty-denim: #778da9;
+  --color-dusty-denim-100: #161c23;
+  --color-dusty-denim-200: #2c3746;
+  --color-dusty-denim-300: #425369;
+  --color-dusty-denim-400: #586f8d;
+  --color-dusty-denim-500: #778da9;
+  --color-dusty-denim-600: #91a2ba;
+  --color-dusty-denim-700: #acbacb;
+  --color-dusty-denim-800: #c8d1dc;
+  --color-dusty-denim-900: #e3e8ee;
+
+  /* alabaster_grey */
+  --color-alabaster-grey: #e0e1dd;
+  --color-alabaster-grey-100: #2e2f2a;
+  --color-alabaster-grey-200: #5b5e53;
+  --color-alabaster-grey-300: #898c7e;
+  --color-alabaster-grey-400: #b4b6ad;
+  --color-alabaster-grey-500: #e0e1dd;
+  --color-alabaster-grey-600: #e5e6e3;
+  --color-alabaster-grey-700: #ececea;
+  --color-alabaster-grey-800: #f2f3f1;
+  --color-alabaster-grey-900: #f9f9f8;
+}
+
+/* Global body */
 body {
-  @apply bg-gray-50 text-gray-900 antialiased;
+  @apply bg-alabaster-grey-800 text-ink-black antialiased;
 }
 
-@import 'tailwindcss';
-
+/* Movie Card */
+/* Make the card a vertical flex container with a fixed poster area
+   and a flexible body that can shrink and scroll if necessary */
 .movie-card {
-  @apply grid rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm;
-  grid-template-rows: 2fr 1fr;
-  aspect-ratio: 3/4;
-}
-
-.movie-card__poster {
-  @apply w-full h-full object-cover;
-}
-
-.movie-card__body {
-  @apply flex flex-col gap-2 p-3;
+  @apply relative overflow-hidden border border-alabaster-grey-300 bg-alabaster-grey-900 shadow-sm;
+  /* Use flex-col so we can constrain poster height with aspect-ratio */
+  display: flex;
+  flex-direction: column;
+  /* Keep the same overall aspect if you like; remove if cards live in a grid with gaps */
+  aspect-ratio: 3 / 4;
+  /* Ensure children can shrink properly inside */
   min-height: 0;
 }
 
-.movie-card__title {
-  @apply text-base font-semibold leading-snug text-gray-900;
-  white-space: nowrap;
+/* Poster wrapper: fixed ratio area that does NOT expand the whole card */
+.movie-card__poster {
+  /* Reserve vertical space with a stable aspect ratio based on the card width */
+  @apply w-full object-cover;
+  /* Lock poster height relative to width; prevents it from eating the body area */
+  aspect-ratio: 3 / 2.5; /* shorter than the whole card; tweak (e.g., 3/2 or 4/3) */
+  /* Prevent flex growth so the body always remains visible */
+  flex: 0 0 auto;
+}
+
+/* Body: flex column that can shrink; allow internal overflow handling */
+.movie-card__body {
+  @apply flex flex-col gap-2 p-3 items-center;
+  /* This is critical so the body can shrink and not overflow the card */
+  min-height: 0;
+  /* Take remaining space (after poster) */
+  flex: 1 1 auto;
+  /* Clip if children overflow, while letting inner items manage text overflow */
   overflow: hidden;
+  width: 100%;
+}
+
+/* Title: single-line truncate to avoid overflow */
+.movie-card__title {
+  @apply text-base font-semibold leading-snug text-ink-black truncate;
+  /* Ensure truncation works by bounding the width inside the centered layout */
+  max-width: 100%;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+/* Meta row: don't wrap; allow ellipsis and keep spacing */
 .movie-card__meta {
-  @apply flex items-center justify-between text-sm text-gray-600;
+  @apply flex items-center text-sm text-prussian-blue-400 gap-3;
+  /* Keep the meta line from wrapping to multiple lines */
 }
+
+/* Genre: truncate if too long */
 .movie-card__genre {
-  @apply text-gray-600;
+  @apply text-prussian-blue-400 truncate;
+  max-width: 60%;
 }
+
+/* Rating: keep visible; avoid shrinking too small */
 .movie-card__rating {
-  @apply font-medium text-gray-700;
+  @apply font-medium rounded-xl bg-dusty-denim-400 px-2;
+  flex-shrink: 0; /* prevents the badge from collapsing */
 }
+
+/* Actions pinned to bottom of the body */
 .movie-card__actions {
-  @apply mt-auto;
+  @apply mt-auto w-full flex justify-center items-center;
+  /* Prevent actions from being pushed out of view */
+  flex-shrink: 0;
 }
 
 .btn {
-  @apply inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium transition;
+  @apply inline-flex items-center justify-center px-3 py-2 text-sm font-medium transition;
 }
+
 .btn-primary {
-  @apply bg-blue-600 text-white hover:bg-blue-700;
+  @apply bg-prussian-blue-600 text-white hover:bg-prussian-blue-700;
 }
+
 .btn-ghost {
-  @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+  @apply bg-alabaster-grey-400 text-ink-black hover:bg-alabaster-grey-500;
 }
 
+/* Movies List */
 .movies-list {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0 m-0;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 list-none p-4
+         h-[calc(100vh-12rem)] overflow-auto;
 }
 
+/* Toolbar */
 .movies-toolbar {
   @apply flex flex-wrap items-end justify-between gap-3 mb-4;
 }
 
-/* ---------- Search bar ---------- */
-.searchbar {
-  @apply w-full sm:max-w-md;
-}
-.searchbar__label {
-  @apply block text-sm font-medium text-gray-700 mb-1;
-}
-.input-text {
-  @apply w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900
-         shadow-sm outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
-}
-.searchbar__actions {
-  @apply mt-2 flex items-center gap-2;
-}
-
 /* ---------- Filters ---------- */
+/* ACTIONS BAR (Search + Filters container) */
+.actions-bar {
+  @apply flex gap-4 items-center;
+}
+
+/* FILTER BAR */
 .filter-bar {
-  @apply flex flex-wrap gap-4 items-center p-4 bg-gray-100 rounded-lg shadow;
+  @apply flex gap-4 items-center align-middle p-2
+         bg-alabaster-grey-900/80
+         backdrop-blur
+         rounded-xl
+         border border-alabaster-grey-600/30
+         shadow-sm;
 }
 
+/* FILTER LABEL */
 .filter-label {
-  @apply flex flex-col text-sm font-medium text-gray-700;
+  @apply flex items-center text-sm font-medium text-prussian-blue-700;
 }
 
+/* FILTER SELECT */
 .filter-select {
-  @apply mt-1 border border-gray-300 bg-white rounded-md p-2
-         focus:outline-none focus:ring-2 focus:ring-blue-500
-         focus:border-blue-500;
+  @apply mt-1 p-2
+         bg-alabaster-grey-900/80
+         border border-alabaster-grey-400/50
+         rounded-md
+         text-ink-black
+         focus:outline-none focus:ring-2 focus:ring-dusk-blue-500
+         focus:border-dusk-blue-500;
 }
 
+/* CHECKBOX TEXT */
 .filter-checkbox {
-  @apply flex items-center gap-2 text-sm font-medium text-gray-700;
+  @apply flex items-center gap-2 text-sm font-medium text-prussian-blue-700;
+}
+
+/* SEARCH BAR WRAPPER */
+.searchbar {
+  @apply w-full sm:max-w-md flex items-center
+  h-[50%]
+         bg-alabaster-grey-900/80
+         rounded-xl
+         border border-alabaster-grey-600/40
+         backdrop-blur
+         shadow-sm p-2;
+}
+
+/* SEARCH INPUT */
+.input-text {
+  @apply w-full max-h-10 px-3 py-2 text-sm
+         bg-transparent
+         text-ink-black
+         border-0
+         focus:ring-0 focus:outline-none;
+}
+
+/* SEARCHBAR ACTION ICONS */
+.searchbar__actions {
+  @apply flex items-center gap-2 text-prussian-blue-700;
 }

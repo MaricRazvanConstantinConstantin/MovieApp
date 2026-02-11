@@ -9,8 +9,7 @@ export default function FilterBar() {
       <label className='filter-label'>
         Genres:
         <select
-          multiple
-          value={filters.genres}
+          value={filters.genres[0]}
           className='filter-select'
           onChange={(e) => {
             const raw = Array.from(e.target.selectedOptions).map(

@@ -1,7 +1,6 @@
 import {useEffect} from 'react';
 import {useMoviesContext} from './context';
-import MoviesList from './components/MoviesList';
-import FilterBar from './components/FilterBar';
+import MoviesPage from './pages/MoviesPage';
 
 export default function App() {
   const {loadMoviesFromJSON, loading, error} = useMoviesContext();

@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {MoviesContext} from './MoviesContext';
+import {MoviesContext} from '.';
 
 export function useMoviesContext() {
   const ctx = useContext(MoviesContext);

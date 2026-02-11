@@ -16,6 +16,7 @@ export type MoviesContextValue = MoviesState & {
   setGenreFilter: (genres: Genre[]) => void;
   setSort: (sort: SortSpecifications) => void;
   setOnlyInWatchlist: (value: boolean) => void;
+  setSearchQuery: (saerchQuery: string) => void;
   clearFilters: () => void;
 };
 
