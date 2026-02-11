@@ -1,5 +1,5 @@
 export type Genre = 'drama' | 'fantasy' | 'horror' | 'action';
-export const GENRES = ['drama', 'fantasy', 'horror', 'action'] as const;
+export const GENRES = ['all', 'drama', 'fantasy', 'horror', 'action'] as const;
 
 export type Movie = {
   id: number;
@@ -19,6 +19,7 @@ export type SortSpecifications = {
 };
 
 export type MoviesFilters = {
+  searchQuery: string;
   genres: Genre[];
   sort: SortSpecifications;
   onlyInWatchlist: boolean;
@@ -38,6 +39,7 @@ export const initialState: MoviesState = {
   loading: false,
   error: null,
   filters: {
+    searchQuery: '',
     genres: [],
     sort: {field: 'title', direction: 'asc'},
     onlyInWatchlist: false,
@@ -79,6 +81,10 @@ export type SetSortAction = {
   payload: {sortSpecifications: SortSpecifications};
 };
 
+export type SetSearchQuery = {
+  type: 'SET_SEARCH_QUERY';
+  payload: {searchQuery: string};
+};
 export type SetOnlyInWatchlistAction = {
   type: 'SET_ONLY_IN_WATCHLIST';
   payload: {value: boolean};
@@ -96,5 +102,6 @@ export type MoviesContextAction =
   | RemoveFromWatchlistAction
   | SetGenreFiltersAction
   | SetSortAction
+  | SetSearchQuery
   | SetOnlyInWatchlistAction
   | ClearFiltersAction;

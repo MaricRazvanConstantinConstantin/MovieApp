@@ -1,11 +1,29 @@
-import {useReducer, useMemo, type ReactNode} from 'react';
-import type {Genre, Movie, MoviesState, SortSpecifications} from './moviesTypes';
+import {useReducer, useMemo, type ReactNode, useEffect} from 'react';
+import type {
+  Genre,
+  Movie,
+  MoviesState,
+  SortSpecifications,
+} from './moviesTypes';
 import {initialState} from './moviesTypes';
 import {moviesReducer} from './moviesReducer';
-import {MoviesContext, type MoviesContextValue} from './MoviesContext';
+import {MoviesContext, type MoviesContextValue} from '.';
+import {initFromStorage, LS_KEYS, writeJSON} from '../store/local_storage';
 
 export function MoviesContextProvider({children}: {children: ReactNode}) {
-  const [state, dispatch] = useReducer(moviesReducer, initialState);
+  const [state, dispatch] = useReducer(
+    moviesReducer,
+    initialState,
+    initFromStorage,
+  );
+
+  useEffect(() => {
+    writeJSON(LS_KEYS.filters, state.filters);
+  }, [state.filters]);
+
+  useEffect(() => {
+    writeJSON(LS_KEYS.watchlist, state.watchlist);
+  }, [state.watchlist]);
 
   const loadMoviesFromJSON = async (filePath: string) => {
     dispatch({type: 'LOAD_MOVIES_START', payload: {filepath: filePath}});
@@ -39,6 +57,9 @@ export function MoviesContextProvider({children}: {children: ReactNode}) {
   const setSort = (sort: SortSpecifications) =>
     dispatch({type: 'SET_SORT', payload: {sortSpecifications: sort}});
 
+  const setSearchQuery = (seachQuery: string) =>
+    dispatch({type: 'SET_SEARCH_QUERY', payload: {searchQuery: seachQuery}});
+
   const setOnlyInWatchlist = (value: boolean) =>
     dispatch({type: 'SET_ONLY_IN_WATCHLIST', payload: {value}});
 
@@ -59,6 +80,7 @@ export function MoviesContextProvider({children}: {children: ReactNode}) {
       setGenreFilter,
       setSort,
       setOnlyInWatchlist,
+      setSearchQuery,
       clearFilters,
     }),
     [state, filteredMovies],
@@ -76,10 +98,18 @@ function applyFilters(
 ): Movie[] {
   const base = filters.onlyInWatchlist ? watchlist : movies;
 
+  const q = (filters.searchQuery ?? '').trim().toLowerCase();
+  const bySearch = q
+    ? base.filter((m) => {
+        const title = (m.title ?? '').toLowerCase();
+        return title.includes(q);
+      })
+    : base;
+
   const byGenre =
     filters.genres.length === 0
-      ? base
-      : base.filter((m) => filters.genres.includes(m.genre));
+      ? bySearch
+      : bySearch.filter((m) => filters.genres.includes(m.genre));
 
   const {field, direction} = filters.sort;
   const dir = direction === 'asc' ? 1 : -1;

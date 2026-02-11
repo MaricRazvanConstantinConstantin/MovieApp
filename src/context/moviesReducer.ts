@@ -52,6 +52,12 @@ export function moviesReducer(
         filters: {...state.filters, onlyInWatchlist: action.payload.value},
       };
 
+    case 'SET_SEARCH_QUERY':
+      return {
+        ...state,
+        filters: {...state.filters, searchQuery: action.payload.searchQuery},
+      };
+
     case 'CLEAR_FILTERS':
       return {
         ...state,
