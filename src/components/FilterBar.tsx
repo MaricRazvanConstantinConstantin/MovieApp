@@ -22,7 +22,6 @@ export default function FilterBar() {
             setGenreFilter(selected);
           }}
         >
-          <option value='all'>All</option>
           {GENRES.map((g) => (
             <option key={g} value={g}>
               {g}

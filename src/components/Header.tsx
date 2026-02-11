@@ -5,13 +5,9 @@ export default function Header() {
   return (
     <header
       className={[
-        // layout
         'relative w-full flex flex-col items-center',
-        // background & decoration using your palette
         'bg-gradient-to-br from-dusk-blue-600 via-prussian-blue-600 to-ink-black',
-        // spacing
         'px-6 py-3',
-        // subtle shadow
         'shadow-sm',
       ].join(' ')}
     >

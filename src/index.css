@@ -66,74 +66,46 @@ body {
   @apply bg-alabaster-grey-800 text-ink-black antialiased;
 }
 
-/* Movie Card */
-/* Make the card a vertical flex container with a fixed poster area
-   and a flexible body that can shrink and scroll if necessary */
 .movie-card {
   @apply relative overflow-hidden border border-alabaster-grey-300 bg-alabaster-grey-900 shadow-sm;
-  /* Use flex-col so we can constrain poster height with aspect-ratio */
   display: flex;
   flex-direction: column;
-  /* Keep the same overall aspect if you like; remove if cards live in a grid with gaps */
   aspect-ratio: 3 / 4;
-  /* Ensure children can shrink properly inside */
   min-height: 0;
-}
 
-/* Poster wrapper: fixed ratio area that does NOT expand the whole card */
-.movie-card__poster {
-  /* Reserve vertical space with a stable aspect ratio based on the card width */
-  @apply w-full object-cover;
-  /* Lock poster height relative to width; prevents it from eating the body area */
-  aspect-ratio: 3 / 2.5; /* shorter than the whole card; tweak (e.g., 3/2 or 4/3) */
-  /* Prevent flex growth so the body always remains visible */
-  flex: 0 0 auto;
-}
-
-/* Body: flex column that can shrink; allow internal overflow handling */
-.movie-card__body {
-  @apply flex flex-col gap-2 p-3 items-center;
-  /* This is critical so the body can shrink and not overflow the card */
-  min-height: 0;
-  /* Take remaining space (after poster) */
-  flex: 1 1 auto;
-  /* Clip if children overflow, while letting inner items manage text overflow */
-  overflow: hidden;
-  width: 100%;
-}
-
-/* Title: single-line truncate to avoid overflow */
-.movie-card__title {
-  @apply text-base font-semibold leading-snug text-ink-black truncate;
-  /* Ensure truncation works by bounding the width inside the centered layout */
-  max-width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/* Meta row: don't wrap; allow ellipsis and keep spacing */
-.movie-card__meta {
-  @apply flex items-center text-sm text-prussian-blue-400 gap-3;
-  /* Keep the meta line from wrapping to multiple lines */
-}
-
-/* Genre: truncate if too long */
-.movie-card__genre {
-  @apply text-prussian-blue-400 truncate;
-  max-width: 60%;
-}
-
-/* Rating: keep visible; avoid shrinking too small */
-.movie-card__rating {
-  @apply font-medium rounded-xl bg-dusty-denim-400 px-2;
-  flex-shrink: 0; /* prevents the badge from collapsing */
-}
-
-/* Actions pinned to bottom of the body */
-.movie-card__actions {
-  @apply mt-auto w-full flex justify-center items-center;
-  /* Prevent actions from being pushed out of view */
-  flex-shrink: 0;
+  .poster {
+    @apply w-full object-cover;
+    aspect-ratio: 3 / 2.5;
+    flex: 0 0 auto;
+  }
+  .body {
+    @apply flex flex-col gap-2 p-3 items-center;
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    width: 100%;
+  }
+  .title {
+    @apply text-base font-semibold leading-snug text-ink-black truncate;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .meta {
+    @apply flex items-center text-sm text-prussian-blue-400 gap-3;
+  }
+  .genre {
+    @apply text-prussian-blue-400 truncate;
+    max-width: 60%;
+  }
+  .rating {
+    @apply font-medium rounded-xl bg-dusty-denim-400 px-2;
+    flex-shrink: 0;
+  }
+  .actions {
+    @apply mt-auto w-full flex justify-center items-center;
+    flex-shrink: 0;
+  }
 }
 
 .btn {
@@ -150,13 +122,8 @@ body {
 
 /* Movies List */
 .movies-list {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 list-none p-4
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 list-none p-30
          h-[calc(100vh-12rem)] overflow-auto;
-}
-
-/* Toolbar */
-.movies-toolbar {
-  @apply flex flex-wrap items-end justify-between gap-3 mb-4;
 }
 
 /* ---------- Filters ---------- */
@@ -214,9 +181,4 @@ body {
          text-ink-black
          border-0
          focus:ring-0 focus:outline-none;
-}
-
-/* SEARCHBAR ACTION ICONS */
-.searchbar__actions {
-  @apply flex items-center gap-2 text-prussian-blue-700;
 }

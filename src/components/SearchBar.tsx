@@ -21,7 +21,7 @@ export default function SearchBar() {
 
       <button
         type='button'
-        className='btn btn-outline bg-red-400'
+        className='btn btn-outline border-l-1 border-l-prussian-blue-800'
         onClick={() => {
           setSearchQuery('');
         }}

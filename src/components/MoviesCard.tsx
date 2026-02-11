@@ -15,21 +15,14 @@ function ToggleWatchlistButton({
       aria-label={checked ? 'In watchlist' : 'Not in watchlist'}
       onClick={onChange}
       className={[
-        // Fluid width inside the card; cap on larger screens if desired
         'relative inline-flex h-10 w-full min-w-0 sm:max-w-64',
-        // Ensure the label area has reserved space for the knob on BOTH sides
-        // (knob ≈ 2rem + ~0.5rem gaps → use px-12 for safe clearance)
         'px-12',
-        // Layout & chrome
         'items-center rounded-full border overflow-hidden select-none',
         'bg-alabaster-grey-400 border-alabaster-grey-500',
-        // Focus
         'focus:outline-none focus-visible:ring-2 focus-visible:ring-dusk-blue-500',
-        // Transitions
         'transition-colors duration-300',
       ].join(' ')}
     >
-      {/* Fill track that scales (no width calculations needed) */}
       <span
         aria-hidden='true'
         className={[
@@ -39,7 +32,6 @@ function ToggleWatchlistButton({
         ].join(' ')}
       />
 
-      {/* The label: centered, non-wrapping, no resize impact */}
       <span
         className={[
           'relative z-10 block w-full text-center text-sm font-medium',
@@ -51,11 +43,9 @@ function ToggleWatchlistButton({
         {checked ? 'In watchlist' : 'Not in watchlist'}
       </span>
 
-      {/* Knob rail — positions knob responsively with no overlap */}
       <span
         aria-hidden='true'
         className={[
-          // Place rail inside the inner padding (match px-12, so use 0.5rem (2) + knob spacing)
           'absolute left-1 right-1',
           'flex',
           checked ? 'justify-end' : 'justify-start',
@@ -88,14 +78,14 @@ export default function MoviesCard({movie}: {movie: Movie}) {
         loading='lazy'
       />
 
-      <div className='movie-card__body'>
-        <h3 className='movie-card__title'>{movie.title}</h3>
+      <div className='body'>
+        <h3 className='title'>{movie.title}</h3>
 
-        <div className='movie-card__meta'>
-          <span className='movie-card__genre'>{movie.genre}</span>
+        <div className='meta'>
+          <span className='genre'>{movie.genre}</span>
           <span
             className={
-              'movie-card__rating ' +
+              'rating ' +
               (movie.rating < 5
                 ? 'text-red-400'
                 : movie.rating < 8
@@ -107,7 +97,7 @@ export default function MoviesCard({movie}: {movie: Movie}) {
           </span>
         </div>
 
-        <div className='movie-card__actions'>
+        <div className='actions'>
           <ToggleWatchlistButton
             checked={inWatchlist}
             onChange={toggleWatchlist}

@@ -6,22 +6,8 @@ export default function MoviesList() {
 
   if (filteredMovies.length === 0) {
     return (
-      <div
-        className={[
-          // container
-          'mx-auto max-w-3xl',
-          'rounded-2xl border',
-          'bg-alabaster-grey-900/70 border-alabaster-grey-600/30',
-          'backdrop-blur-md shadow-sm',
-          'px-6 py-10 sm:py-12',
-          'text-center',
-        ].join(' ')}
-        role='status'
-        aria-live='polite'
-      >
-        {/* Icon */}
+      <div className='sm:py-12 text-center' role='status' aria-live='polite'>
         <div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-dusk-blue-600 text-white shadow'>
-          {/* Film icon (inline SVG) */}
           <svg
             viewBox='0 0 24 24'
             className='h-6 w-6'
@@ -32,12 +18,9 @@ export default function MoviesList() {
           </svg>
         </div>
 
-        {/* Title */}
         <h2 className='text-lg sm:text-xl font-semibold text-ink-black'>
           No movies found
         </h2>
-
-        {/* Subtitle */}
         <p className='mt-1 text-sm text-prussian-blue-700'>
           Try adjusting your filters or search term.
         </p>
