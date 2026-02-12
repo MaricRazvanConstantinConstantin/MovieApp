@@ -2,7 +2,10 @@ import {useMoviesContext} from '../context';
 import MoviesCard from './MoviesCard';
 
 export default function MoviesList() {
-  const {filteredMovies} = useMoviesContext();
+  const {filteredMovies, loading, error} = useMoviesContext();
+
+  if (loading) return <div>Loading movies………</div>;
+  if (error) return <div style={{color: 'crimson'}}>Error: {error}</div>;
 
   if (filteredMovies.length === 0) {
     return (
