@@ -4,16 +4,15 @@ import SearchBar from './SearchBar';
 export default function Header() {
   return (
     <header
-      className={[
-        'relative w-full flex flex-col items-center',
-        'bg-gradient-to-br from-dusk-blue-600 via-prussian-blue-600 to-ink-black',
-        'px-6 py-3',
-        'shadow-sm',
-      ].join(' ')}
+      className={`relative w-full flex flex-col items-center gap-3
+        bg-linear-to-br from-dusk-blue-600 via-prussian-blue-600 to-ink-black
+        px-6 py-3
+        shadow-sm
+      `}
     >
       <div className='relative mx-auto flex flex-col items-center'>
         <h1 className='mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-alabaster-grey-900'>
-          <span className='bg-gradient-to-r from-alabaster-grey-900 to-alabaster-grey-700 bg-clip-text text-transparent'>
+          <span className='bg-linear-to-r from-alabaster-grey-900 to-alabaster-grey-700 bg-clip-text text-transparent'>
             Movies Explorer
           </span>
         </h1>
@@ -23,7 +22,7 @@ export default function Header() {
           mood.
         </p>
       </div>
-      <div className='actions-bar'>
+      <div className='flex gap-4 items-center'>
         <SearchBar />
         <FilterBar />
       </div>

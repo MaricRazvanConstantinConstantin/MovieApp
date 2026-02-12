@@ -28,6 +28,7 @@ export type MoviesFilters = {
 export type MoviesState = {
   movies: Movie[];
   watchlist: Movie[];
+  selectedMovie: Movie | null;
   loading: boolean;
   error: string | null;
   filters: MoviesFilters;
@@ -36,6 +37,7 @@ export type MoviesState = {
 export const initialState: MoviesState = {
   movies: [],
   watchlist: [],
+  selectedMovie: null,
   loading: false,
   error: null,
   filters: {
@@ -90,6 +92,11 @@ export type SetOnlyInWatchlistAction = {
   payload: {value: boolean};
 };
 
+export type SetSelectMovieAction = {
+  type: 'SET_SELECTED_MOVIE';
+  payload: {selectedMovie: Movie | null};
+};
+
 export type ClearFiltersAction = {
   type: 'CLEAR_FILTERS';
 };
@@ -104,4 +111,5 @@ export type MoviesContextAction =
   | SetSortAction
   | SetSearchQuery
   | SetOnlyInWatchlistAction
+  | SetSelectMovieAction
   | ClearFiltersAction;

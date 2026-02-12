@@ -27,6 +27,8 @@ export function MoviesContextProvider({children}: {children: ReactNode}) {
 
   const loadMoviesFromJSON = async (filePath: string) => {
     dispatch({type: 'LOAD_MOVIES_START', payload: {filepath: filePath}});
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     try {
       const response = await fetch(filePath);
       if (!response.ok)
@@ -63,6 +65,9 @@ export function MoviesContextProvider({children}: {children: ReactNode}) {
   const setOnlyInWatchlist = (value: boolean) =>
     dispatch({type: 'SET_ONLY_IN_WATCHLIST', payload: {value}});
 
+  const setSelectedMovie = (selectedMovie: Movie | null) =>
+    dispatch({type: 'SET_SELECTED_MOVIE', payload: {selectedMovie}});
+
   const clearFilters = () => dispatch({type: 'CLEAR_FILTERS'});
 
   const filteredMovies = useMemo(
@@ -81,6 +86,7 @@ export function MoviesContextProvider({children}: {children: ReactNode}) {
       setSort,
       setOnlyInWatchlist,
       setSearchQuery,
+      setSelectedMovie,
       clearFilters,
     }),
     [state, filteredMovies],

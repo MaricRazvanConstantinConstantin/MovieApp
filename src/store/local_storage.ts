@@ -20,7 +20,7 @@ export function writeJSON(key: string, value: unknown) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch {
-    // Swallow to avoid breaking the app if storage is full/blocked
+   //...
   }
 }
 

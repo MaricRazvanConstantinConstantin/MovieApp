@@ -1,10 +1,11 @@
 import {useMoviesContext} from '../context';
+import Loader from './Loader';
 import MoviesCard from './MoviesCard';
 
 export default function MoviesList() {
   const {filteredMovies, loading, error} = useMoviesContext();
 
-  if (loading) return <div>Loading movies………</div>;
+  if (loading) return <Loader />;
   if (error) return <div style={{color: 'crimson'}}>Error: {error}</div>;
 
   if (filteredMovies.length === 0) {
@@ -32,7 +33,10 @@ export default function MoviesList() {
   }
 
   return (
-    <ul className='movies-list'>
+    <ul
+      className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 list-none p-15
+         h-[calc(100vh-12rem)] overflow-auto'
+    >
       {filteredMovies.map((m) => (
         <li key={m.id}>
           <MoviesCard movie={m} />

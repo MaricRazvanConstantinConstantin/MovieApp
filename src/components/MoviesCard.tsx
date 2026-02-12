@@ -1,69 +1,9 @@
 import {useMoviesContext, type Movie} from '../context';
-
-function ToggleWatchlistButton({
-  checked,
-  onChange,
-}: {
-  checked: boolean;
-  onChange: () => void;
-}) {
-  return (
-    <button
-      type='button'
-      role='switch'
-      aria-checked={checked}
-      aria-label={checked ? 'In watchlist' : 'Not in watchlist'}
-      onClick={onChange}
-      className={[
-        'relative inline-flex h-10 w-full min-w-0 sm:max-w-64',
-        'px-12',
-        'items-center rounded-full border overflow-hidden select-none',
-        'bg-alabaster-grey-400 border-alabaster-grey-500',
-        'focus:outline-none focus-visible:ring-2 focus-visible:ring-dusk-blue-500',
-        'transition-colors duration-300',
-      ].join(' ')}
-    >
-      <span
-        aria-hidden='true'
-        className={[
-          'absolute inset-0 bg-dusk-blue-600',
-          'origin-left transition-transform duration-300 ease-out',
-          checked ? 'scale-x-100' : 'scale-x-0',
-        ].join(' ')}
-      />
-
-      <span
-        className={[
-          'relative z-10 block w-full text-center text-sm font-medium',
-          'whitespace-nowrap overflow-hidden text-ellipsis',
-          'transition-colors duration-300',
-          checked ? 'text-white' : 'text-ink-black',
-        ].join(' ')}
-      >
-        {checked ? 'In watchlist' : 'Not in watchlist'}
-      </span>
-
-      <span
-        aria-hidden='true'
-        className={[
-          'absolute left-1 right-1',
-          'flex',
-          checked ? 'justify-end' : 'justify-start',
-        ].join(' ')}
-      >
-        <span
-          className={[
-            'h-7 w-7 rounded-full shadow',
-            'bg-alabaster-grey-900',
-          ].join(' ')}
-        />
-      </span>
-    </button>
-  );
-}
+import ToggleWatchlistButton from './ToggleWatchlistButton';
 
 export default function MoviesCard({movie}: {movie: Movie}) {
-  const {watchlist, addToWatchList, removeFromWatchlist} = useMoviesContext();
+  const {watchlist, addToWatchList, removeFromWatchlist, setSelectedMovie} =
+    useMoviesContext();
   const inWatchlist = watchlist.some((w) => w.id === movie.id);
 
   const toggleWatchlist = () =>
@@ -83,6 +23,7 @@ export default function MoviesCard({movie}: {movie: Movie}) {
 
         <div className='meta'>
           <span className='genre'>{movie.genre}</span>
+          <p className='text-prussian-blue-500'> | </p>
           <span
             className={
               'rating ' +
@@ -97,11 +38,18 @@ export default function MoviesCard({movie}: {movie: Movie}) {
           </span>
         </div>
 
-        <div className='actions'>
+        <div className='actions gap-3'>
           <ToggleWatchlistButton
             checked={inWatchlist}
             onChange={toggleWatchlist}
           />
+
+          <button
+            className='btn btn-primary rounded-2xl'
+            onClick={() => setSelectedMovie(movie)}
+          >
+            Details
+          </button>
         </div>
       </div>
     </div>

@@ -1,18 +1,16 @@
 @import 'tailwindcss';
 @theme {
-  /* ink_black */
-  --color-ink-black: #0d1b2a; /* enables bg-ink-black, text-ink-black, etc. */
+  --color-ink-black: #0d1b2a;
   --color-ink-black-100: #030609;
   --color-ink-black-200: #050b11;
   --color-ink-black-300: #08111a;
   --color-ink-black-400: #0b1622;
-  --color-ink-black-500: #0d1b2a; /* usually same as DEFAULT */
+  --color-ink-black-500: #0d1b2a;
   --color-ink-black-600: #234870;
   --color-ink-black-700: #3875b6;
   --color-ink-black-800: #74a3d4;
   --color-ink-black-900: #bad1ea;
 
-  /* prussian_blue */
   --color-prussian-blue: #1b263b;
   --color-prussian-blue-100: #05080c;
   --color-prussian-blue-200: #0b0f18;
@@ -24,7 +22,6 @@
   --color-prussian-blue-800: #8ba1ca;
   --color-prussian-blue-900: #c5d0e4;
 
-  /* dusk_blue */
   --color-dusk-blue: #415a77;
   --color-dusk-blue-100: #0d1218;
   --color-dusk-blue-200: #1a242f;
@@ -36,7 +33,6 @@
   --color-dusk-blue-800: #abbcd1;
   --color-dusk-blue-900: #d5dee8;
 
-  /* dusty_denim */
   --color-dusty-denim: #778da9;
   --color-dusty-denim-100: #161c23;
   --color-dusty-denim-200: #2c3746;
@@ -48,7 +44,6 @@
   --color-dusty-denim-800: #c8d1dc;
   --color-dusty-denim-900: #e3e8ee;
 
-  /* alabaster_grey */
   --color-alabaster-grey: #e0e1dd;
   --color-alabaster-grey-100: #2e2f2a;
   --color-alabaster-grey-200: #5b5e53;
@@ -61,7 +56,6 @@
   --color-alabaster-grey-900: #f9f9f8;
 }
 
-/* Global body */
 body {
   @apply bg-alabaster-grey-800 text-ink-black antialiased;
 }
@@ -70,7 +64,7 @@ body {
   @apply relative overflow-hidden border border-alabaster-grey-300 bg-alabaster-grey-900 shadow-sm;
   display: flex;
   flex-direction: column;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3 / 4.3;
   min-height: 0;
 
   .poster {
@@ -82,17 +76,20 @@ body {
     @apply flex flex-col gap-2 p-3 items-center;
     min-height: 0;
     flex: 1 1 auto;
-    overflow: hidden;
     width: 100%;
   }
   .title {
     @apply text-base font-semibold leading-snug text-ink-black truncate;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     max-width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;
+    flex-shrink: 0;
   }
   .meta {
-    @apply flex items-center text-sm text-prussian-blue-400 gap-3;
+    @apply flex items-center   text-prussian-blue-400 gap-3;
+    font-size: clamp(0.65rem, 1vw, 0.9rem);
+    flex-shrink: 0;
   }
   .genre {
     @apply text-prussian-blue-400 truncate;
@@ -108,6 +105,33 @@ body {
   }
 }
 
+.filter-bar {
+  @apply flex gap-4 items-center align-middle p-2
+         bg-alabaster-grey-900/80
+         backdrop-blur
+         rounded-xl
+         border border-alabaster-grey-600/30
+         shadow-sm;
+
+  .filter-label {
+    @apply flex items-center text-sm font-medium text-prussian-blue-700;
+  }
+
+  .filter-select {
+    @apply mt-1 p-2
+         bg-alabaster-grey-900/80
+         border border-alabaster-grey-400/50
+         rounded-md
+         text-ink-black
+         focus:outline-none focus:ring-2 focus:ring-dusk-blue-500
+         focus:border-dusk-blue-500;
+  }
+
+  .filter-checkbox {
+    @apply flex items-center gap-2 text-sm font-medium text-prussian-blue-700;
+  }
+}
+
 .btn {
   @apply inline-flex items-center justify-center px-3 py-2 text-sm font-medium transition;
 }
@@ -120,50 +144,6 @@ body {
   @apply bg-alabaster-grey-400 text-ink-black hover:bg-alabaster-grey-500;
 }
 
-/* Movies List */
-.movies-list {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 list-none p-30
-         h-[calc(100vh-12rem)] overflow-auto;
-}
-
-/* ---------- Filters ---------- */
-/* ACTIONS BAR (Search + Filters container) */
-.actions-bar {
-  @apply flex gap-4 items-center;
-}
-
-/* FILTER BAR */
-.filter-bar {
-  @apply flex gap-4 items-center align-middle p-2
-         bg-alabaster-grey-900/80
-         backdrop-blur
-         rounded-xl
-         border border-alabaster-grey-600/30
-         shadow-sm;
-}
-
-/* FILTER LABEL */
-.filter-label {
-  @apply flex items-center text-sm font-medium text-prussian-blue-700;
-}
-
-/* FILTER SELECT */
-.filter-select {
-  @apply mt-1 p-2
-         bg-alabaster-grey-900/80
-         border border-alabaster-grey-400/50
-         rounded-md
-         text-ink-black
-         focus:outline-none focus:ring-2 focus:ring-dusk-blue-500
-         focus:border-dusk-blue-500;
-}
-
-/* CHECKBOX TEXT */
-.filter-checkbox {
-  @apply flex items-center gap-2 text-sm font-medium text-prussian-blue-700;
-}
-
-/* SEARCH BAR WRAPPER */
 .searchbar {
   @apply w-full sm:max-w-md flex items-center
   h-[50%]
@@ -174,7 +154,6 @@ body {
          shadow-sm p-2;
 }
 
-/* SEARCH INPUT */
 .input-text {
   @apply w-full max-h-10 px-3 py-2 text-sm
          bg-transparent

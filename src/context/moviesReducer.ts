@@ -58,6 +58,12 @@ export function moviesReducer(
         filters: {...state.filters, searchQuery: action.payload.searchQuery},
       };
 
+    case 'SET_SELECTED_MOVIE':
+      return {
+        ...state,
+        selectedMovie: action.payload.selectedMovie,
+      };
+
     case 'CLEAR_FILTERS':
       return {
         ...state,
